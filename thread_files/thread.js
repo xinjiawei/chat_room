@@ -14,17 +14,16 @@ function userInfo(username) {
     //window.alert("username is " + username);
     //document.cookie = cname + "=" + cvalue + "; " + expires;
     //window.location.replace("/html/chat_room/user_threads.html");
-
     //window.location.replace("http://localhost:7777/api/users/" + username);
     var settings = {
-      "url": "http://localhost:7777/api/users/" + username,
-      "method": "GET",
-      "timeout": 0,
+        "url": "http://localhost:7777/api/users/" + username,
+        "method": "GET",
+        "timeout": 0,
     };
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      document.getElementById("name").innerHTML = response.name;
+    $.ajax(settings).done(function(response) {
+        console.log(response);
+        document.getElementById("name").innerHTML = response.name;
     });
 }
 
@@ -34,14 +33,14 @@ function loginOut() {
     location.reload();
 }
 
-function clearCookie(name) {  
-    setCookie(name, "", -1);  
-} 
+function clearCookie(name) {
+    setCookie(name, "", -1);
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
@@ -70,24 +69,24 @@ function newThread() {
             }),
         };
 
-        $.ajax(settings).done(function(response,status,xhr) {
+        $.ajax(settings).done(function(response, status, xhr) {
             console.log(status);
             console.log(xhr.status);
-            if(xhr.status == 201) {
-              console.log(response);
-              window.alert("success");
-              location.reload();
+            if (xhr.status == 201) {
+                console.log(response);
+                window.alert("success");
+                location.reload();
             } else {
                 console.log(xhr.status);
-              window.alert("error: " + JSON.stringify(response));
-              }
+                window.alert("error: " + JSON.stringify(response));
+            }
 
         });
 
     }
 }
 
-
+//0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 if (getCookie("username") == "") {
     window.alert("no login user");
     window.location.replace("/html/chat_room/login.html");
@@ -100,3 +99,51 @@ if (getCookie("username") == "") {
 //document.getElementById('name').addEventListener('click', userThread);
 document.getElementById("loginout").addEventListener('click', loginOut);
 document.getElementById('new_thread').addEventListener('click', newThread);
+
+
+var settings = {
+  "url": "http://localhost:7777/api/threads",
+  "method": "GET",
+  "timeout": 0,
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
+    var i = 1;
+    //创建元素的
+    //   var pObj = document.createElement("p");
+    //   setInnnerText(pObj, "这是一个p");
+    //   //把创建后的子元素追加到父级元素中
+    //   my$("dv").appendChild(pObj);
+    i += 1;
+    var li1_Obj = document.createElement("li");
+    //setInnnerText(pObj, "这是一个p");
+    setInnnerIdAndClass(li1_Obj, i + "li", "media", "");
+    my$("dv").appendChild(li1_Obj);
+
+    var div1_Obj = document.createElement("div");
+    setInnnerIdAndClass(div1_Obj, i + "div1", "media-body", "");
+    my$(i + "li").appendChild(div1_Obj);
+
+    var div21_Obj = document.createElement("div");
+    setInnnerIdAndClass(div21_Obj, i + "div21", "media-heading", "");
+    my$(i + "div1").appendChild(div21_Obj);
+    var a31_Obj = document.createElement("a");
+    setInnnerText(a31_Obj, "这是一个p");
+    setInnnerIdAndClass(a31_Obj, "", "", "http://a-foo.herokuapp.com/topics/17");
+    my$(i + "div21").appendChild(a31_Obj);
+
+    var div22_Obj = document.createElement("div");
+    setInnnerIdAndClass(div22_Obj, i + "div22", "media-body meta", "");
+    my$(i + "div1").appendChild(div22_Obj);
+    var a32_Obj = document.createElement("a");
+    setInnnerText(a32_Obj, "这是一个p");
+    setInnnerIdAndClass(a32_Obj, "", "", "http://a-foo.herokuapp.com/topics/17");
+    my$(i + "div22").appendChild(a32_Obj);
+
+    var hrObj = document.createElement("hr");
+
+    my$("dv").appendChild(hrObj);
