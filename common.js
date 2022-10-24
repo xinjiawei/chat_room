@@ -1,7 +1,4 @@
-/**
- * Created by Administrator on 2017-09-18.
- */
- 
+
 function my$(id) {
     return document.getElementById(id);
 }

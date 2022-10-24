@@ -27,3 +27,6 @@ if (getCookie("username") == ""){
   }
 
 document.getElementById('name').addEventListener('click', userInfo);
+
+
+//"http://localhost:7777/api/threads/" + response[p].id)

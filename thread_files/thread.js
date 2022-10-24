@@ -1,52 +1,3 @@
-function init(){
-
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    //console.log(ca);
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
-}
-
-function userInfo(username) {
-    //username = getCookie("username");
-    //window.alert("username is " + username);
-    //document.cookie = cname + "=" + cvalue + "; " + expires;
-    //window.location.replace("/html/chat_room/user_threads.html");
-    //window.location.replace("http://localhost:7777/api/users/" + username);
-    var settings = {
-        "url": "http://localhost:7777/api/users/" + username,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function(response) {
-        console.log(response);
-        document.getElementById("name").innerHTML = response.name;
-    });
-}
-
-function loginOut() {
-    username = getCookie("username");
-    clearCookie("username");
-    location.reload();
-}
-
-function clearCookie(name) {
-    setCookie(name, "", -1);
-}
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
 
 function newThread() {
 
@@ -90,25 +41,8 @@ function newThread() {
     }
 }
 
-//0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-if (getCookie("username") == "") {
-    window.alert("no login user");
-    window.location.replace("/html/chat_room/login.html");
-} else {
-    window.alert(getCookie("username") + " login success");
-    username = getCookie("username");
-    userInfo(username);
-}
 
-//document.getElementById('name').addEventListener('click', userThread);
-document.getElementById("loginout").addEventListener('click', loginOut);
-document.getElementById('new_thread').addEventListener('click', newThread);
-
-
-
-
-//window.alert(geThreads()); 
-function drawDom() {
+async function drawDom() {
 var settings = {
   "url": "http://localhost:7777/api/threads",
   "method": "GET",
@@ -118,12 +52,7 @@ var i = 1;
 $.ajax(settings).done(function (response) {
   console.log(response);
   for (var p in response) {//遍历json数组时，这么写p为索引，0,1
-    console.log(response[p].id + " " + response[p].user + " " + response[p].thread_title + " " + response[p].icon);
-    //创建元素的
-    //   var pObj = document.createElement("p");
-    //   setInnnerText(pObj, "这是一个p");
-    //   //把创建后的子元素追加到父级元素中
-    //   my$("dv").appendChild(pObj);
+    //console.log(response[p].id + " " + response[p].user + " " + response[p].thread_title + " " + response[p].icon);
     i += 1;
     var li1_Obj = document.createElement("li");
     //setInnnerText(pObj, "这是一个p");
@@ -139,7 +68,7 @@ $.ajax(settings).done(function (response) {
     my$(i + "div1").appendChild(div21_Obj);
     var a31_Obj = document.createElement("a");
     setInnnerText(a31_Obj, response[p].icon + " • " + response[p].thread_title);
-    setInnnerIdAndClass(a31_Obj, "", "", "http://localhost:7777/api/threads/" + response[p].id);
+    setInnnerIdAndClass(a31_Obj, response[p].id + "i", "threadstitle", "");
     my$(i + "div21").appendChild(a31_Obj);
 
     var div22_Obj = document.createElement("div");
@@ -154,8 +83,33 @@ $.ajax(settings).done(function (response) {
 
     my$("dv").appendChild(hrObj);
 }
+
 });
+console.log("01")
+return "0000"
 }
 
-drawDom();
+//function 
+//function setCookie(cname, cvalue, exdays)
+//0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+
+
+window.onload=drawDom().then((res)=>
+{ 
+    console.log(res);
+    console.log("00");
+    $(".threadstitle").click(function (e){ 
+        console.log("02");
+        var v_id=e.target.id;  
+        console.log(v_id);
+        var v_id2 = $(this).attr("id");
+        console.log(v_id2);}
+    )
+    $( "#name" ).click(function() {
+    alert( "Handler for .click() called." );
+});
+})
+
+
 
