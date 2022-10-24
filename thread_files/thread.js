@@ -1,7 +1,11 @@
+function init(){
+
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
-    console.log(ca);
+    //console.log(ca);
     for (var i = 0; i < ca.length; i++) {
         var c = ca[i].trim();
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
@@ -101,18 +105,20 @@ document.getElementById("loginout").addEventListener('click', loginOut);
 document.getElementById('new_thread').addEventListener('click', newThread);
 
 
+
+
+//window.alert(geThreads()); 
+function drawDom() {
 var settings = {
   "url": "http://localhost:7777/api/threads",
   "method": "GET",
   "timeout": 0,
 };
-
+var i = 1;
 $.ajax(settings).done(function (response) {
   console.log(response);
-});
-
-
-    var i = 1;
+  for (var p in response) {//遍历json数组时，这么写p为索引，0,1
+    console.log(response[p].id + " " + response[p].user + " " + response[p].thread_title + " " + response[p].icon);
     //创建元素的
     //   var pObj = document.createElement("p");
     //   setInnnerText(pObj, "这是一个p");
@@ -132,18 +138,24 @@ $.ajax(settings).done(function (response) {
     setInnnerIdAndClass(div21_Obj, i + "div21", "media-heading", "");
     my$(i + "div1").appendChild(div21_Obj);
     var a31_Obj = document.createElement("a");
-    setInnnerText(a31_Obj, "这是一个p");
-    setInnnerIdAndClass(a31_Obj, "", "", "http://a-foo.herokuapp.com/topics/17");
+    setInnnerText(a31_Obj, response[p].icon + " • " + response[p].thread_title);
+    setInnnerIdAndClass(a31_Obj, "", "", "http://localhost:7777/api/threads/" + response[p].id);
     my$(i + "div21").appendChild(a31_Obj);
 
     var div22_Obj = document.createElement("div");
     setInnnerIdAndClass(div22_Obj, i + "div22", "media-body meta", "");
     my$(i + "div1").appendChild(div22_Obj);
     var a32_Obj = document.createElement("a");
-    setInnnerText(a32_Obj, "这是一个p");
-    setInnnerIdAndClass(a32_Obj, "", "", "http://a-foo.herokuapp.com/topics/17");
+    setInnnerText(a32_Obj, response[p].user);
+    setInnnerIdAndClass(a32_Obj, "", "", "http://localhost:7777/api/users/" + response[p].user);
     my$(i + "div22").appendChild(a32_Obj);
 
     var hrObj = document.createElement("hr");
 
     my$("dv").appendChild(hrObj);
+}
+});
+}
+
+drawDom();
+
