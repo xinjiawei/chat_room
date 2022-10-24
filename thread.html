@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://a-foo.herokuapp.com/ -->
+<html lang="zh-CN" class="ext-strict">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <title></title>
+
+
+    <!-- Styles -->
+    <link href="./thread_files/app.css" rel="stylesheet" />
+    <style type="text/css">
+      #_copy {
+        align-items: center;
+        background: #4494d5;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        font-size: 13px;
+        height: 30px;
+        justify-content: center;
+        position: absolute;
+        width: 60px;
+        z-index: 1000;
+      }
+      #select-tooltip,
+      #sfModal,
+      .modal-backdrop,
+      div[id^="reader-helper"] {
+        display: none !important;
+      }
+      .modal-open {
+        overflow: auto !important;
+      }
+      ._sf_adjust_body {
+        padding-right: 0 !important;
+      }
+      .super_copy_btns_div {
+        position: fixed;
+        width: 154px;
+        left: 10px;
+        top: 45%;
+        background: #e7f1ff;
+        border: 2px solid #4595d5;
+        font-weight: 600;
+        border-radius: 2px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+          Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+          sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        z-index: 5000;
+      }
+      .super_copy_btns_logo {
+        width: 100%;
+        background: #4595d5;
+        text-align: center;
+        font-size: 12px;
+        color: #e7f1ff;
+        line-height: 30px;
+        height: 30px;
+      }
+      .super_copy_btns_btn {
+        display: block;
+        width: 128px;
+        height: 28px;
+        background: #7f5711;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 12px;
+        border: 0;
+        outline: 0;
+        margin: 8px auto;
+        font-weight: 700;
+        cursor: pointer;
+        opacity: 0.9;
+      }
+      .super_copy_btns_btn:hover {
+        opacity: 0.8;
+      }
+      .super_copy_btns_btn:active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <script type="text/javascript" src="./jquery-2.1.1.min.js"></script>
+  <body class="ext-webkit ext-chrome" id="syno-nsc-ext-gen3" _c_t_j1="1">
+    <div id="app" class="root-page">
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button
+              type="button"
+              data-toggle="collapse"
+              data-target="#app-navbar-collapse"
+              class="navbar-toggle collapsed"
+            >
+              <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span> <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="http://a-foo.herokuapp.com/" class="navbar-brand">
+              A-Project
+            </a>
+          </div>
+          <div id="app-navbar-collapse" class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+              <a id="name" role="button"> test <span class="caret"></span></a>
+            </li>
+            <li class="dropdown">
+                <a id="loginout" role="button"> loginout <span class="caret"></span></a>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 col-md-9 topic-list">
+            <div class="panel panel-default">
+
+              <div class="panel-body">
+                <ul class="media-list">
+                  <li class="media">
+                    <div class="media-left">
+                      <a href="http://a-foo.herokuapp.com/users/8"
+                        ><img
+                          src="./话题列表 - A-Project_files/6.jpg"
+                          title="Kendrick Bernhard"
+                          class="media-object img-thumbnail"
+                          style="width: 52px; height: 52px"
+                      /></a>
+                    </div>
+                    <div class="media-body">
+                      <div class="media-heading">
+                        <a
+                          href="http://a-foo.herokuapp.com/topics/17"
+                          title="Nam ut aut similique rerum autem."
+                        >
+                          Nam ut aut similique rerum autem.
+                        </a>
+                        <a
+                          href="http://a-foo.herokuapp.com/topics/17"
+                          class="pull-right"
+                          ><span class="badge"> 7 </span></a
+                        >
+                      </div>
+                      <div class="media-body meta">
+                        <a
+                          href="http://a-foo.herokuapp.com/categories/2"
+                          title="教程"
+                          ><span
+                            aria-hidden="true"
+                            class="glyphicon glyphicon-folder-open"
+                          ></span>
+                          教程
+                        </a>
+                        <span> • </span>
+                        <a
+                          href="http://a-foo.herokuapp.com/users/8"
+                          title="Kendrick Bernhard"
+                          ><span
+                            aria-hidden="true"
+                            class="glyphicon glyphicon-user"
+                          ></span>
+                          Kendrick Bernhard
+                        </a>
+                        <span> • </span>
+                        <span
+                          aria-hidden="true"
+                          class="glyphicon glyphicon-time"
+                        ></span>
+                        <span title="最后活跃于" class="timeago">4年前</span>
+                      </div>
+                    </div>
+                  </li>
+                  <hr />
+                  <li class="media">
+                    <div class="media-left">
+                      <a href="http://a-foo.herokuapp.com/users/7"
+                        ><img
+                          src="./话题列表 - A-Project_files/7.jpg"
+                          title="Arnold Keeling"
+                          class="media-object img-thumbnail"
+                          style="width: 52px; height: 52px"
+                      /></a>
+                    </div>
+                    <div class="media-body">
+                      <div class="media-heading">
+                        <a
+                          href="http://a-foo.herokuapp.com/topics/5"
+                          title="Ut culpa aut odio aut nulla."
+                        >
+                          Ut culpa aut odio aut nulla.
+                        </a>
+                        <a
+                          href="http://a-foo.herokuapp.com/topics/5"
+                          class="pull-right"
+                          ><span class="badge"> 9 </span></a
+                        >
+                      </div>
+                      <div class="media-body meta">
+                        <a
+                          href="http://a-foo.herokuapp.com/categories/3"
+                          title="分享"
+                          ><span
+                            aria-hidden="true"
+                            class="glyphicon glyphicon-folder-open"
+                          ></span>
+                          分享
+                        </a>
+                        <span> • </span>
+                        <a
+                          href="http://a-foo.herokuapp.com/users/7"
+                          title="Arnold Keeling"
+                          ><span
+                            aria-hidden="true"
+                            class="glyphicon glyphicon-user"
+                          ></span>
+                          Arnold Keeling
+                        </a>
+
+                      </div>
+                    </div>
+                  </li>
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 sidebar">
+
+      <div class="panel-body">
+        <h2 class="text-center">
+          <i class="glyphicon glyphicon-edit"></i>
+          新建话题
+        </h2>
+        <hr />
+        <form
+          accept-charset="UTF-8"
+        >
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="title"
+              value="0"
+              placeholder="请填写标题"
+              required="required"
+              class="form-control"
+            />
+          </div>
+        <div class="form-group">
+            <input
+              type="text"
+              id="icon"
+              value="00"
+              placeholder="icon"
+              required="required"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="simditor">
+              <div class="simditor-wrapper">
+                <textarea
+                  name="body"
+                  id="editor"
+                  rows="3"
+                  placeholder="请填入至少三个字符的内容。"
+                  required="required"
+                  class="form-control"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="well well-sm">
+            <button type="button" id="new_thread" class="btn btn-primary">
+              <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
+              保存
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><div class="container"></div></footer>
+    </div>
+
+  </body>
+    <!-- Scripts -->
+    <script src="./thread_files/thread.js"></script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>实时轨迹</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>  
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=6qLcs6AlpEBDiY4wnfBxL2yW2xpVFguZ">
+</script>
+<script type="text/javascript" src="js/jquery.min.js"> </script>
+</head>  
+ 
+<body>  
+<div id="container"></div> 
+</body>
+<script type="text/javascript">
+function getLocation(map) {
+	$.ajax({
+		type:"post",
+		url:"oper/getjson.php",
+		datatype:"json",
+		success:function(data, textStatus) {
+			map.clearOverlays();	//清除所有覆盖物
+			var points = new Array();
+			var objs = JSON.parse(data);
+			
+			var inlatitude = objs[0].latitude;
+			var inlongitude = objs[0].longitude;
+			var dataid = objs[0].id;
+			//console.log(objs);
+			for(var i=0; i<objs.length; ++i) {
+				var _point = objs[i];
+				var latitude = _point.latitude;
+				var longitude = _point.longitude;
+				var point = new BMap.Point(longitude, latitude);
+				points[i] = point;
+				//console.log(_point);
+				//console.log(objs.length);
+			}
+			  //alert(01);
+			  //0000000000000000000000000000
+			  //console.log(points[0]);
+			  //console.log(points);
+			  //console.log(i);
+			  //0000000000000000000000000000
+			
+			var marker_start = new BMap.Marker(points[0]);        // 创建标注    
+			var marker_end = new BMap.Marker(points[objs.length - 1]);
+			map.addOverlay(marker_start); 
+			map.addOverlay(marker_end);
+			//alert(02);
+			map.setCenter(points[0]);
+			var polyline = new BMap.Polyline(points,    
+	                            {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}    
+	                           );    
+			map.addOverlay(polyline);
+			//alert(03);
+			var opts = {    
+					 width : 150,     // 信息窗口宽度    
+					 height: 80,     // 信息窗口高度    
+					 title : ""  // 信息窗口标题   
+			} 
+			var infoWindow = new BMap.InfoWindow("World", opts);  // 创建信息窗口对象 
+			infoWindow.setContent("位置id:" + dataid + "<br>" + "经度:" + inlongitude +"<br>" + "纬度:" + inlatitude );
+			map.openInfoWindow(infoWindow, points[0]);      // 打开信息窗口
+			//控件
+            var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+            //scaleControl.setUnit(BMAP_UNIT_METRIC);
+            map.addControl(scaleControl);
+            //var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:0});
+            //map.addControl(navControl);
+            var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_TOP_RIGHT});   //设置版权控件位置
+	        map.addControl(cr); //添加版权控件
+
+	        var bs = map.getBounds();   //返回地图可视区域
+	        cr.addCopyright({id: 1, content: "<a href='#' style='font-size:20px;background:yellow'>HX实时轨迹</a>", bounds: bs});
+			
+		},
+		error: function (xhr, desc, err) {
+	        alert("error");
+	    }
+	});
+}
+
+var map = new BMap.Map("container");          // 创建地图实例  
+var point = new BMap.Point(114.425552, 40.671494);  // 创建点坐标  
+map.centerAndZoom(point, 30); 
+map.enableScrollWheelZoom(true);
+getLocation(map);
+setInterval("getLocation(map)", 5000);
+
+</script>  
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <script src="js/flv.js"></script>
+    <script src="js/jquery.min.js"></script>
+
+
+ 
+    <title>vidio</title>
+</head>
+<body>
+<video id="videoElement"width=100% height=100% autoplay muted></video>
+<script>
+    if (flvjs.isSupported()) {
+        var videoElement = document.getElementById('videoElement');
+        var flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            url: 'https://act.jiawei.xin:8444/live/stream2.flv'
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flvPlayer.play();
+    }
+    document.body.addEventListener('mousedown', function(){
+    var vdo = $("video")[0]; //jquery
+    vdo.muted = false;
+}, false);
+</script>
+
+</body>
+</html>
