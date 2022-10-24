@@ -42,7 +42,7 @@ function newThread() {
 }
 
 
-async function drawDom() {
+async function drawDom(){
 var settings = {
   "url": "http://localhost:7777/api/threads",
   "method": "GET",
@@ -82,34 +82,46 @@ $.ajax(settings).done(function (response) {
     var hrObj = document.createElement("hr");
 
     my$("dv").appendChild(hrObj);
+
+    //document.body.appendChild(info);
+
 }
 
 });
-console.log("01")
+console.log("01");
 return "0000"
 }
 
 //function 
+// 
 //function setCookie(cname, cvalue, exdays)
 //0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-
-
-
-window.onload=drawDom().then((res)=>
-{ 
-    console.log(res);
-    console.log("00");
+document.getElementById("new_thread").addEventListener('click', newThread);
+window.onload=drawDom().then((res)=>{
     $(".threadstitle").click(function (e){ 
-        console.log("02");
+        //console.log("02");
         var v_id=e.target.id;  
         console.log(v_id);
         var v_id2 = $(this).attr("id");
-        console.log(v_id2);}
-    )
+        console.log(v_id2);
+    });
+
     $( "#name" ).click(function() {
     alert( "Handler for .click() called." );
-});
+    });
+
+    $(function(){
+            $(".text-center").append('<div id="f533">123321</div>');
+            //console.log($('div').height());//有输出结果 18
+            $("#f533").click(function (e){ 
+            var v_id=e.target.id;  
+            console.log(v_id);
+
+    });
+        });    
+
 })
+
 
 
 
