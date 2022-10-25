@@ -1,4 +1,7 @@
+//global var
 var threadMaster = "";
+
+//post a new reply
 function newPost() {
 
     username = getCookie("username");
@@ -37,6 +40,7 @@ function newPost() {
     }
 }
 
+//draw the list dom
 async function drawDom(){
 var settings = {
   "url": "http://localhost:7777/api/threads/" + threadid,
@@ -48,8 +52,8 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   $("#he").append('<div class="panel panel-default"><div class="panel-body"><h1 class="text-center">' + "FROM: " + response.user + '</h1><div class="topic-body">' +
                     response.icon + " • " +  response.thread_title + '</div></div></div>');
-
-  for (var p in response.posts) {//遍历json数组时，这么写p为索引，0,1
+  //traverse json array, p can be 1,2....
+  for (var p in response.posts) {
     console.log(p + "," + response.posts[p].user);
     i+=1;
     users=response.posts[p].user;
@@ -59,7 +63,7 @@ $.ajax(settings).done(function (response) {
 
 }
 
-// 根据返回的user值判断对当前用户显示删除帖子按钮.
+// justify if display the delete post button for the current user based on the returned user value.
 threadMaster = response.user;
 if(response.user == getCookie("username")){
   console.log("master visit");
@@ -71,9 +75,9 @@ if(response.user == getCookie("username")){
 
 });
 console.log("01");
-return "0000"
 }
 
+// delete thread
 function deleteThread(id){
   if(threadMaster == getCookie("username")) {
 
@@ -103,6 +107,7 @@ function deleteThread(id){
         });}
 }
 
+//backto previous page
 function backTo() {
   window.location.replace("/html/chat_room/thread.html");
 }
@@ -114,7 +119,7 @@ document.getElementById("deletethread").addEventListener('click', deleteThread);
 document.getElementById("back").addEventListener('click', backTo);
 //"http://localhost:7777/api/threads/" + response[p].id)
 
-// just test, no use
+// just learn and test async, no use
 window.onload=drawDom().then((res)=>{
 
     $( "#name" ).click(function() {

@@ -1,3 +1,4 @@
+//get the cookies
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -8,8 +9,8 @@ function getCookie(cname) {
     }
     return "";
 }
-
-function userInfo(username) {
+//change page user name and display
+function changeUser(username) {
     //username = getCookie("username");
     //window.alert("username is " + username);
     //document.cookie = cname + "=" + cvalue + "; " + expires;
@@ -20,7 +21,8 @@ function userInfo(username) {
 
 }
 
-//todo async : false 用法 
+//TODO  async : false 用法 
+//get real username
 function getUserinfo(username){
     
     var settings = {
@@ -37,16 +39,19 @@ function getUserinfo(username){
     return name;
 }
 
+//loginout and 
 function loginOut() {
     username = getCookie("username");
     clearCookie("username");
     location.reload();
 }
 
+//clean cookies
 function clearCookie(name) {
     setCookie(name, "", -1);
 }
 
+//set cookies
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     if(exdays == "") {

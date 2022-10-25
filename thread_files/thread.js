@@ -1,4 +1,4 @@
-
+//post a new thread
 function newThread() {
 
     username = getCookie("username");
@@ -41,7 +41,7 @@ function newThread() {
     }
 }
 
-
+//draw the thread list dom
 function drawDom(){
 var settings = {
   "url": "http://localhost:7777/api/threads",
@@ -51,7 +51,7 @@ var settings = {
 var i = 1;
 $.ajax(settings).done(function (response) {
   console.log(response);
-  for (var p in response) {//遍历json数组时，这么写p为索引，0,1
+  for (var p in response) {
     //console.log(response[p].id + " " + response[p].user + " " + response[p].thread_title + " " + response[p].icon);
     i += 1;
     var li1_Obj = document.createElement("li");
@@ -111,7 +111,7 @@ $( "#name" ).click(function() {
 alert("you are: " + getUserinfo(username));
 });   
 
-
+//reflush the thread list
 var timer = setInterval(function() {
     clearContent("dv");
     drawDom();

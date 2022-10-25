@@ -1,4 +1,4 @@
-//login function
+//login function, use cookies to save user info
 function loginS(){
     username = document.getElementById("username").value;
     console.log(username);
@@ -8,7 +8,7 @@ function loginS(){
     window.location.replace("/html/chat_room/thread.html");
     }
 
-//check if logined
+//check if logined, can justify whether logind
 function getCookie(cname){
   var name = cname + "=";
   var ca = document.cookie.split(';');

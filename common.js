@@ -3,7 +3,7 @@ function my$(id) {
     return document.getElementById(id);
 }
  
-//设置任意元素的中间的文本内容
+// Sets the middle text content of any element
 function setInnnerText(element,text) {
     if(typeof element.textContent=="undefined"){
         element.innerText=text;
@@ -11,7 +11,7 @@ function setInnnerText(element,text) {
         element.textContent=text;
     }
 }
-
+// sets some inner attributes: id class href
 function setInnnerIdAndClass(element,ids,classs,href) {
   //var div = document.createElement('div');
   if(ids!== ""){
@@ -27,7 +27,7 @@ function setInnnerIdAndClass(element,ids,classs,href) {
 }
 
 
-//获取任意元素的中间的文本内容
+//get the innertext in elements
 function getInnerText(element) {
     if(typeof element.textContent=="undefined"){
         return element.innerText;
@@ -37,24 +37,24 @@ function getInnerText(element) {
 }
  
  
-//获取任意一个父级元素的第一个子级元素
+// Get the first child of any parent element
 function getFirstElementChild(element) {
-    if(element.firstElementChild){//true--->支持
+    if(element.firstElementChild){//true--->support
         return element.firstElementChild;
     }else{
-        var node=element.firstChild;//第一个节点
+        var node=element.firstChild;//the first node
         while (node&&node.nodeType!=1){
             node=node.nextSibling;
         }
         return node;
     }
 }
-//获取任意一个父级元素的最后一个子级元素
+// Gets the last child of any parent element
 function getLastElementChild(element) {
-    if(element.lastElementChild){//true--->支持
+    if(element.lastElementChild){//true--->support
         return element.lastElementChild;
     }else{
-        var node=element.lastChild;//第一个节点
+        var node=element.lastChild;//the first node
         while (node&&node.nodeType!=1){
             node=node.previousSibling;
         }
@@ -62,9 +62,9 @@ function getLastElementChild(element) {
     }
 }
  
-//为任意元素.绑定任意的事件, 任意的元素,事件的类型,事件处理函数
+// is any element. Bind to any event, to any element, to the type of event, to the event handler
 function addEventListener(element,type,fn) {
-    //判断浏览器是否支持这个方法
+    //justify if browers suppost the methods
     if(element.addEventListener){
         element.addEventListener(type,fn,false);
     }else if(element.attachEvent){
