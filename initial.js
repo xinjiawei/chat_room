@@ -15,16 +15,26 @@ function userInfo(username) {
     //document.cookie = cname + "=" + cvalue + "; " + expires;
     //window.location.replace("/html/chat_room/user_threads.html");
     //window.location.replace("http://localhost:7777/api/users/" + username);
+
+    document.getElementById("name").innerHTML = getUserinfo(username);
+
+}
+
+//todo async : false 用法 
+function getUserinfo(username){
+    
     var settings = {
         "url": "http://localhost:7777/api/users/" + username,
         "method": "GET",
+        "async" : false,
         "timeout": 0,
     };
-
+    var name = "";
     $.ajax(settings).done(function(response) {
-        console.log(response);
-        document.getElementById("name").innerHTML = response.name;
+        //console.log(response);
+        name = response.name;
     });
+    return name;
 }
 
 function loginOut() {
@@ -39,7 +49,19 @@ function clearCookie(name) {
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+    if(exdays == "") {
+        expires = null;
+    } else {
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        expires = "expires=" + d.toUTCString();
+    }
+
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+
+// eliminate a dom tree
+function clearContent(elementID) {
+    var div = document.getElementById(elementID);
+    while(div.firstChild) {
+    div.removeChild(div.firstChild);
+}}

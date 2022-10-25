@@ -85,9 +85,20 @@
       }
     </style>
   </head>
-      <script type="text/javascript" src="./jquery-3.6.1.js"></script>
+  <script type="text/javascript" src="./jquery-3.6.1.js"></script>
   <script type="text/javascript" src="./initial.js"></script>
-  <script type="text/javascript" src="./initial.js"></script>
+      <script type="text/javascript">
+        if(getCookie("jumptarget") == "") {
+          var threadid = getCookie("staytarget");
+        } else {
+          var threadid = getCookie("jumptarget");
+        } 
+      clearCookie("jumptarget");
+      setCookie("staytarget",threadid,"");
+      console.log(getCookie("jumptarget") + "," + threadid + "," + getCookie("staytarget"));
+
+      //console.log(getUserinfo("norman"));
+    </script>
   <body
     _c_t_common="1"
     class="ext-webkit ext-chrome"
@@ -115,14 +126,17 @@
           <div id="app-navbar-collapse" class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-right">
-              <li id="alt" style="display:none">
-                <a id="deletethread" role="button"> DeleteThread <span class="caret"></span></a>
+              <li id="" style="display:block">
+                <a id="back" role="button"> BACK </a>
                 </li>
-              <li class="dropdown">
-                <a id="name" role="button"> invivid user <span class="caret"></span></a>
+              <li id="alt" style="display:none">
+                <a id="deletethread" role="button"> DeleteThread </a>
+                </li>
+              <li class="">
+                <a id="name" role="button"> invivid user </a>
               </li>
               <li class="dropdown">
-                <a id="loginout" role="button"> loginout <span class="caret"></span></a>
+                <a id="loginout" role="button"> loginout </a>
             </li>
             </ul>
           </div>
@@ -133,7 +147,9 @@
 
           <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
            
-            </div>
+           
+
+            <div id="he"></div>
             <div class="panel panel-default topic-reply">
               <div class="panel-body">
                 <div class="reply-box">
@@ -161,6 +177,7 @@
                 </div>
               </div>
             </div>
+             </div>
           </div>
         </div>
       </div>

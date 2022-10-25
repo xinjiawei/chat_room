@@ -42,7 +42,7 @@ function newThread() {
 }
 
 
-async function drawDom(){
+function drawDom(){
 var settings = {
   "url": "http://localhost:7777/api/threads",
   "method": "GET",
@@ -68,7 +68,7 @@ $.ajax(settings).done(function (response) {
     my$(i + "div1").appendChild(div21_Obj);
     var a31_Obj = document.createElement("a");
     setInnnerText(a31_Obj, response[p].icon + " • " + response[p].thread_title);
-    setInnnerIdAndClass(a31_Obj, response[p].id + "i", "threadstitle", "");
+    setInnnerIdAndClass(a31_Obj, response[p].id + "i", "threadstitle", "./content.html");
     my$(i + "div21").appendChild(a31_Obj);
 
     var div22_Obj = document.createElement("div");
@@ -86,7 +86,13 @@ $.ajax(settings).done(function (response) {
     //document.body.appendChild(info);
 
 }
-
+    // get dynamic createlement id 
+    $(".threadstitle").click(function (e){ 
+        var v_id_i = $(this).attr("id");
+        console.log(v_id_i);
+        v_id = v_id_i.replace(/(i+)$/g,"");
+        setCookie("jumptarget",v_id,"");
+    });
 });
 console.log("01");
 return "0000"
@@ -97,31 +103,19 @@ return "0000"
 //function setCookie(cname, cvalue, exdays)
 //0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 document.getElementById("new_thread").addEventListener('click', newThread);
-window.onload=drawDom().then((res)=>{
-    $(".threadstitle").click(function (e){ 
-        //console.log("02");
-        var v_id=e.target.id;  
-        console.log(v_id);
-        var v_id2 = $(this).attr("id");
-        console.log(v_id2);
-    });
 
-    $( "#name" ).click(function() {
-    alert( "Handler for .click() called." );
-    });
+//test some code
+window.onload=drawDom()
 
-    $(function(){
-            $(".text-center").append('<div id="f533">123321</div>');
-            //console.log($('div').height());//有输出结果 18
-            $("#f533").click(function (e){ 
-            var v_id=e.target.id;  
-            console.log(v_id);
+$( "#name" ).click(function() {
+alert("you are: " + getUserinfo(username));
+});   
 
-    });
-        });    
 
-})
-
+var timer = setInterval(function() {
+    clearContent("dv");
+    drawDom();
+}, 5000)
 
 
 
